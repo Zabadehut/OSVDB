@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "pciHeader.h"
 
-namespace AHCI 
+namespace AHCI
 {
     #define ATA_DEV_BUSY 0x80
     #define ATA_DEV_DRQ 0x08
@@ -10,7 +10,7 @@ namespace AHCI
 
     #define HBA_PxIS_TFES (1 << 30)
 
-    enum PortType 
+    enum PortType
     {
         None = 0,
         SATA = 1,

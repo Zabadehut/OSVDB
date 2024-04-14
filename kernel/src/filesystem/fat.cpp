@@ -6,7 +6,9 @@
 #include "../BSL/string.h"
 #include "drivers/readDisk.h"
 
-
+#define FS_FAT12                0
+#define FS_FAT16                1
+#define FS_FAT32                2
 #define SECTOR_SIZE             512
 #define MAX_PATH_SIZE           256
 #define MAX_FILE_HANDLES        10
@@ -125,7 +127,7 @@ bool FAT_ReadFat(AHCI::device disk, size_t lbaIndex)
 void FAT_Detect(AHCI::device disk)
 {
     uint32_t dataClusters = (g_TotalSectors - g_DataSectionLba) / g_Data->BS.BootSector.SectorsPerCluster;
-    if (dataClusters < 0xFF5) 
+    if (dataClusters < 0xFF5)
         g_FatType = 12;
     else if (g_Data->BS.BootSector.SectorsPerFat != 0)
         g_FatType = 16;

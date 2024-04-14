@@ -73,7 +73,7 @@ namespace AHCI
         hbaPort->interruptStatus = (uint32_t) - 1;
 
         HBACommandHeader* commandHeader = (HBACommandHeader*) hbaPort->commandListBase;
-        
+
         commandHeader->commandFISLength = sizeof(FIS_REG_H2D) / sizeof(uint32_t);
         commandHeader->write = 0;
         commandHeader->prdtLength = 1;
@@ -203,7 +203,7 @@ namespace AHCI
                 port->buffer = (uint8_t*) GlobalAllocator.RequestPage();
                 memset(port->buffer, 0, 0x1000);
                 port->Read(0, 4, port->buffer);
-        
+
                 for (int i = 0; i < 1024; i++)
                 {
                     GlobalRenderer->Print("0x");
@@ -211,12 +211,12 @@ namespace AHCI
                     GlobalRenderer->Print(" ");
                 }
             }*/
-            
+
         }
 
         GlobalRenderer->Colour = pastColor;
         GlobalRenderer->Next();
-        
+
     }
 
     AHCIDriver::~AHCIDriver()

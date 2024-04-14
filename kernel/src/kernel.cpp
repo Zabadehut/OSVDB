@@ -12,7 +12,7 @@ void* g_data = (void*)0x00500200;
 
 void readEntry(AHCI::device disk, FAT_DirectoryEntry entry)
 {
-    
+
 }
 
 extern "C" void _start(BootInfo* bootInfo){
@@ -25,31 +25,22 @@ extern "C" void _start(BootInfo* bootInfo){
 
     for (int i = 0; i < 32; i++)
     {
-        if (PCI::getDevices().devices[i][0]->portType == AHCI::PortType::SATA || PCI::getDevices().devices[i][0]->portType == AHCI::PortType::SATAPI)
+        for (int j = 0; j < 32; j++)
         {
-            for (int j = 0; j < 32; j++)
+            if (PCI::getDevices().devices[i][j]->portType != NULL)
             {
-                if (PCI::getDevices().devices[i][j]->portType != NULL)
+                if (PCI::getDevices().devices[i][j]->portType == AHCI::PortType::SATA
+                    || PCI::getDevices().devices[i][j]->portType == AHCI::PortType::SATAPI)
                 {
-                    if (PCI::getDevices().devices[i][j]->portType == AHCI::PortType::SATA)
+                    if (!found)
                     {
-                        if (!found) 
-                        {
-                            for (int k = 0; k < 32; k++) disk.device[k] = PCI::getDevices().devices[i][k];
-                            found = true;
-                        }
-                    } else if (PCI::getDevices().devices[i][j]->portType == AHCI::PortType::SATAPI)
-                    {
-                        if (!found) 
-                        {
-                            for (int k = 0; k < 32; k++) disk.device[k] = PCI::getDevices().devices[i][k];
-                            found = true;
-                        }
+                        for (int k = 0; k < 32; k++) disk.device[k] = PCI::getDevices().devices[i][k];
+                        found = true;
                     }
+
                 }
             }
-        } else {
-            break;
+
         }
     }
 
@@ -58,7 +49,7 @@ extern "C" void _start(BootInfo* bootInfo){
         GlobalRenderer->Println("FAT init error");
     }
 
-    /*FAT_File* fd = FAT_Open(disk, "EFI/");
+    FAT_File* fd = FAT_Open(disk, "EFI/");
     FAT_DirectoryEntry entry;
     int i = 0;
     if (fd != NULL)
@@ -79,7 +70,7 @@ extern "C" void _start(BootInfo* bootInfo){
             GlobalRenderer->Colour = pastColor;
         }
         FAT_Close(fd);
-    }*/
+    }
 
     /*char buffer[100];
     uint32_t read;
@@ -94,6 +85,6 @@ extern "C" void _start(BootInfo* bootInfo){
     FAT_Close(fd);*/
 
     startDesktop(disk);
-    
+
     while (true) asm("hlt");
 }
