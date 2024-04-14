@@ -111,12 +111,13 @@ void PageFrameAllocator::UnreservePages(void* address, uint64_t pageCount){
     }
 }
 
-void PageFrameAllocator::ReservePage(void* address){
-    uint64_t index = (uint64_t)address / 4096;
-    if (PageBitmap[index] == true) return;
+inline void PageFrameAllocator::ReservePage(void* address){
+    uint64_t index = reinterpret_cast<uint64_t>(address) >> 12;
+    bool pageBitmapFlag = PageBitmap[index];
+    if (pageBitmapFlag) return;
     if (PageBitmap.Set(index, true)){
-        freeMemory -= 4096;
-        reservedMemory += 4096;
+        freeMemory -= 0x1000;
+        reservedMemory += 0x1000;
     }
 }
 
