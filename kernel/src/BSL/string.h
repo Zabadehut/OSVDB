@@ -5,29 +5,29 @@
 
 #define nullptr 0
 
-class BSLstr {
+class BSLstr; {
 
-    public:
-        char* value;
-        BSLstr();
-        BSLstr(const char* val);
-        BSLstr(const BSLstr& val);
-        operator char*();
-        BSLstr operator=(BSLstr& val);
-        BSLstr operator+(BSLstr& val);
-        BSLstr operator+(char* val);
-        bool operator==(BSLstr& val);
-        bool operator==(char* val);
-        BSLstr operator*(int val);
-        BSLstr operator+=(BSLstr& val);
-        BSLstr substr(uint32_t start, uint32_t end);
-        bool startswith(BSLstr& val);
-        bool startswith(char* val);
-        char* deleteLastChar();
-        BSLstr toUppercase();
-        BSLstr toLowercase();
-        int length();
-        BSLstr reverse();
+public:
+    char* value;
+    BSLstr();
+    BSLstr(const char* val);
+    BSLstr(const BSLstr& val);
+    operator char*();
+    BSLstr operator=(BSLstr& val);
+    BSLstr operator+(BSLstr& val);
+    BSLstr operator+(char* val);
+    bool operator==(BSLstr& val);
+    bool operator==(char* val);
+    BSLstr operator*(int val);
+    BSLstr operator+=(BSLstr& val);
+    BSLstr substr(uint32_t start, uint32_t end);
+    bool startswith(BSLstr& val);
+    bool startswith(char* val);
+    char* deleteLastChar();
+    BSLstr toUppercase();
+    BSLstr toLowercase();
+    int length();
+    BSLstr reverse();
 };
 void strrev(char *str1);
 char* appendChar(char* array, char a);

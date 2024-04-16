@@ -1,7 +1,7 @@
 #include "efiMemory.h"
 
-const char* EFI_MEMORY_TYPE_STRINGS[] {
-
+// Array of strings corresponding to EFI memory types.
+const char* EFI_MEMORY_TYPE_STRINGS[EfiMaxMemoryType] {
     "EfiReservedMemoryType",
     "EfiLoaderCode",
     "EfiLoaderData",
@@ -15,5 +15,5 @@ const char* EFI_MEMORY_TYPE_STRINGS[] {
     "EfiACPIMemoryNVS",
     "EfiMemoryMappedIO",
     "EfiMemoryMappedIOPortSpace",
-    "EfiPalCode",
+    "EfiPalCode"
 };

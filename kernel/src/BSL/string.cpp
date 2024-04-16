@@ -69,7 +69,7 @@ char* appendChar(char* array, char a)
 
     char* ret = new char[len+2];
 
-    strcpy(ret, array);    
+    strcpy(ret, array);
     ret[len] = a;
     ret[len+1] = '\0';
 
@@ -84,15 +84,15 @@ char* deleteChar(char* array)
 
 void strrev (char* str1)
 {
-    int i, len, temp;  
+    int i, len, temp;
     len = strlen(str1);
-      
-    for (i = 0; i < len/2; i++)  
-    {  
-        temp = str1[i];  
-        str1[i] = str1[len - i - 1];  
-        str1[len - i - 1] = temp;  
-    } 
+
+    for (i = 0; i < len/2; i++)
+    {
+        temp = str1[i];
+        str1[i] = str1[len - i - 1];
+        str1[len - i - 1] = temp;
+    }
 }
 
 bool isLowercase(char ch)
@@ -111,7 +111,7 @@ BSLstr::BSLstr()
     this->value = "";
 }
 
-BSLstr::BSLstr(const char* val) 
+BSLstr::BSLstr(const char* val)
 {
     this->value = (char*) val;
 }
@@ -121,14 +121,14 @@ BSLstr::operator char*()
     return this->value;
 }
 
-BSLstr::BSLstr(const BSLstr& val) 
+BSLstr::BSLstr(const BSLstr& val)
 {
     this->value = val.value;
 }
 
 bool BSLstr::operator==(BSLstr& val)
 {
-    if (strlen(val) == strlen(this -> value)) 
+    if (strlen(val) == strlen(this -> value))
     {
         for (int i = 0; i < strlen(val); i++)
         {

@@ -1,6 +1,9 @@
 #pragma once
 #include <stdint.h>
 
+
+void CreateGDTEntry(uint16_t Limit0, uint16_t Base0, uint8_t Base1, uint8_t AccessByte, uint8_t Limit1_Flags, uint8_t Base2);
+
 struct GDTDescriptor {
     uint16_t Size;
     uint64_t Offset;
